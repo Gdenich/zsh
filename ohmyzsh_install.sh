@@ -9,14 +9,16 @@ export ZSH_CUSTOM
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM}"/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-autosuggestions.git "${ZSH_CUSTOM}"/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-history-substring-search "${ZSH_CUSTOM}"/plugins/zsh-history-substring-search
-sudo apt install thefuck autojump fzf xclip micro -y
-sed -i 's/^plugins=.*/plugins=(git\n extract\n thefuck\n autojump\n jsontools\n colored-man-pages\n zsh-autosuggestions\n zsh-syntax-highlighting\n zsh-history-substring-search\n fzf\n you-should-use\n nvm\n debian)/g' ~/.zshrc
+git clone https://github.com/MichaelAquilina/zsh-you-should-use.git "${ZSH_CUSTOM}"/plugins/you-should-use
+sudo apt install  autojump fzf xclip micro -y
+sed -i 's/^plugins=.*/plugins=(git\n extract\n autojump\n jsontools\n colored-man-pages\n zsh-autosuggestions\n zsh-syntax-highlighting\n zsh-history-substring-search\n fzf\n you-should-use\n nvm\n debian)/g' ~/.zshrc
 # Enable nvm plugin feature to automatically read `.nvmrc` to toggle node version.
 sed -i "1s/^/zstyle ':omz:plugins:nvm' autoload yes\n/" ~/.zshrc
 # Install powerlevel10k and configure it.
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM}"/themes/powerlevel10k
 sed -i 's/^ZSH_THEME=.*/ZSH_THEME="powerlevel10k\/powerlevel10k"/g' ~/.zshrc
-wget -O ~/.p10k.zsh "https://github.com/Gdenich/zsh/blob/main/.p10k.zsh"
+wget -O ~/.p10k.zsh "https://raw.githubusercontent.com/Gdenich/zsh/main/.p10k.zsh"
+wget -O ~/.zshrc "https://raw.githubusercontent.com/Gdenich/zsh/main/.zshrc"
 # Move ".zcompdump-*" file to "$ZSH/cache" directory.
 sed -i -e '/source \$ZSH\/oh-my-zsh.sh/i export ZSH_COMPDUMP=\$ZSH\/cache\/.zcompdump-\$HOST' ~/.zshrc
 # Configure the default ZSH configuration for new users.
@@ -25,3 +27,16 @@ sudo cp ~/.p10k.zsh /etc/skel/
 sudo cp -r ~/.oh-my-zsh /etc/skel/
 sudo chmod -R 755 /etc/skel/
 sudo chown -R root:root /etc/skel/
+read -p "Do you want to set ZSH as your default shell? (y/n) " response
+case $response in
+    y|Y )
+        chsh -s "$(which zsh)"
+        ;;
+    n|N )
+        echo "Exiting..."
+        exit 1
+        ;;
+    * )
+        echo "Invalid input. Exiting..."
+        exit 1
+esac
