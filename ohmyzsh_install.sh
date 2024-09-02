@@ -27,6 +27,8 @@ sudo cp ~/.p10k.zsh /etc/skel/
 sudo cp -r ~/.oh-my-zsh /etc/skel/
 sudo chmod -R 755 /etc/skel/
 sudo chown -R root:root /etc/skel/
+wget -O ~/bash-to-zsh-hist.py "https://raw.githubusercontent.com/Gdenich/zsh/main/bash-to-zsh-hist.py"
+cd ~/ && cp .bash_history .bash_history.bak && cat ~/.bash_history | python3 bash-to-zsh-hist.py >> ~/.zsh_history
 read -p "Do you want to set ZSH as your default shell? (y/n) " response
 case $response in
     y|Y )
