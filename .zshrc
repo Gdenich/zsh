@@ -92,6 +92,7 @@ plugins=(git
  debian)
 
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
+export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -125,3 +126,10 @@ source $ZSH/oh-my-zsh.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# fzf's command
+export FZF_DEFAULT_COMMAND="fdfind --hidden --follow --exclude '.git' --exclude 'node_modules'"
+# CTRL-T's command
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+# ALT-C's command
+export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND --type d"
