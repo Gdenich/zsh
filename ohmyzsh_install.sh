@@ -1,12 +1,10 @@
 #!/bin/bash
 
-sudo apt install zsh -y
+sudo apt install zsh mc git curl-y
 # Install oh-my-zsh.
 0>/dev/null sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ZSH_CUSTOM="$HOME/.oh-my-zsh/custom"
 export ZSH_CUSTOM
-#install packages for LXCs:
-sudo apt install mc git curl -y
 # Configure plugins.
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM}"/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-autosuggestions.git "${ZSH_CUSTOM}"/plugins/zsh-autosuggestions
