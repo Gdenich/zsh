@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo apt install zsh mc git curl-y
+sudo apt install -y zsh mc git curl
 # Install oh-my-zsh.
 0>/dev/null sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ZSH_CUSTOM="$HOME/.oh-my-zsh/custom"
